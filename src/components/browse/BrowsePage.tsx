@@ -13,10 +13,11 @@ const BrowsePage = () => {
       <div>
         {query.data?.map((product) => (
           <ProductCard
+            key={product.id}
             image={product.image}
             title={product.title}
             price={product.price}
-          ></ProductCard>
+          />
         ))}
       </div>
     </>
