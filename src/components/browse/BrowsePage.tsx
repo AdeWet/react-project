@@ -8,6 +8,8 @@ const BrowsePage = () => {
     queryFn: getProducts,
   });
 
+  const handleAddToCart = () => {};
+
   return (
     <>
       <div>
@@ -17,6 +19,7 @@ const BrowsePage = () => {
             image={product.image}
             title={product.title}
             price={product.price}
+            handleAddToCart={handleAddToCart}
           />
         ))}
       </div>

@@ -4,13 +4,13 @@ const ProductCard = ({
   image,
   title,
   price,
+  handleAddToCart,
 }: {
   image: string;
   title: string;
   price: number;
+  handleAddToCart: () => void;
 }) => {
-  const handleAddToCart = () => {};
-
   return (
     <div className="card card-compact bg-base-100 w-96 h-96 shadow-xl">
       <figure>
