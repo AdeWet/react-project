@@ -1,5 +1,11 @@
+import BrowsePage from "./components/browse/BrowsePage";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <BrowsePage />
+    </>
+  );
 }
 
 export default App;
