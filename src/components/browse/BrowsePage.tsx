@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "../../api/productsApi";
+import { getProducts } from "../../api/fakestoreApi";
+import ProductCard from "./ProductCard";
 
 const BrowsePage = () => {
   const query = useQuery({
@@ -11,7 +12,11 @@ const BrowsePage = () => {
     <>
       <div>
         {query.data?.map((product) => (
-          <button>{product.title}</button>
+          <ProductCard
+            image={product.image}
+            title={product.title}
+            price={product.price}
+          ></ProductCard>
         ))}
       </div>
     </>
