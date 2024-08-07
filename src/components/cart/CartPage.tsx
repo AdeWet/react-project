@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../../api/fakestoreApi";
-import { priceInRands } from "../../utils";
 import { useCartStore } from "../stores/useCartStore";
 import CartItem from "./CartItem";
 
@@ -26,10 +25,10 @@ const CartPage = () => {
                 query.data?.find((product) => product.id == item.productId)
                   ?.title ?? ""
               }
-              price={priceInRands(
+              price={
                 query.data?.find((product) => product.id == item.productId)
                   ?.price ?? 0
-              )}
+              }
               quantity={item.quantity}
               addItem={() => addItem(item.productId, true)}
               removeItem={() => addItem(item.productId, false)}

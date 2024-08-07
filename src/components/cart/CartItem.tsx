@@ -1,3 +1,5 @@
+import { priceInRands } from "../../utils";
+
 const CartItem = ({
   image,
   title,
@@ -8,11 +10,15 @@ const CartItem = ({
 }: {
   image: string;
   title: string;
-  price: string;
+  price: number;
   quantity: number;
   addItem: () => void;
   removeItem: () => void;
 }) => {
+  function totalPrice(): string {
+    return priceInRands(quantity * price);
+  }
+
   return (
     <div className="grid grid-cols-3 grid-rows-3 gap-x-6">
       <figure className="row-span-3 object-scale-down w-20">
@@ -29,7 +35,7 @@ const CartItem = ({
         </button>
       </div>
       <div className="font-semibold text-xl self-center justify-self-end">
-        {price}
+        {totalPrice()}
       </div>
       <div></div>
       <button className="btn btn-sm btn-warning self-center justify-self-end">
