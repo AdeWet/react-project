@@ -8,17 +8,23 @@ interface CartItem {
 
 interface CartState {
   cart: CartItem[];
-  addItem: (item: CartItem) => void;
+  addItem: (id: number) => void;
 }
 
-const useCartStore = create<CartState>()(
+export const useCartStore = create<CartState>()(
   devtools(
     persist(
       (set) => ({
         cart: [],
-        addItem: (item) =>
+        addItem: (id) =>
           set((state) => ({
-            cart: [...state.cart, item],
+            cart: [
+              ...state.cart,
+              {
+                productId: id,
+                quantity: 1,
+              },
+            ],
           })),
       }),
       {
