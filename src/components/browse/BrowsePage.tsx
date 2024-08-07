@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../../api/fakestoreApi";
-import { Product } from "../../models/Product";
+import { useCartStore } from "../stores/useCartStore";
 import ProductCard from "./ProductCard";
 
 const BrowsePage = () => {
@@ -9,7 +9,7 @@ const BrowsePage = () => {
     queryFn: getProducts,
   });
 
-  const handleAddToCart = (product: Product) => {};
+  const { adjustItemQuantity } = useCartStore();
 
   return (
     <>
@@ -20,7 +20,7 @@ const BrowsePage = () => {
             image={product.image}
             title={product.title}
             price={product.price}
-            handleAddToCart={() => handleAddToCart(product)}
+            handleAddToCart={() => adjustItemQuantity(product.id, true)}
           />
         ))}
       </div>
