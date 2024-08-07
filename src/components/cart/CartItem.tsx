@@ -3,11 +3,13 @@ const CartItem = ({
   title,
   price,
   quantity,
+  addItem,
 }: {
   image: string;
   title: string;
   price: string;
   quantity: number;
+  addItem: () => void;
 }) => {
   return (
     <div className="grid grid-cols-3 grid-rows-3 gap-x-6">
@@ -18,7 +20,9 @@ const CartItem = ({
       <div className="flex flex-row font-medium text-xl items-center py-3">
         <button className="btn btn-sm">-</button>
         <div className="px-2">{quantity}</div>
-        <button className="btn btn-sm">+</button>
+        <button className="btn btn-sm" onClick={addItem}>
+          +
+        </button>
       </div>
       <div className="font-semibold text-xl self-center justify-self-end">
         {price}

@@ -9,7 +9,7 @@ const CartPage = () => {
     queryKey: ["products"],
     queryFn: getProducts,
   });
-  const { cart } = useCartStore();
+  const { cart, addItem } = useCartStore();
 
   return (
     <>
@@ -31,6 +31,7 @@ const CartPage = () => {
                   ?.price ?? 0
               )}
               quantity={item.quantity}
+              addItem={() => addItem(item.productId)}
             />
             <div className="divider"></div>
           </>
