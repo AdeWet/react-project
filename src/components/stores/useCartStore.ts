@@ -17,15 +17,32 @@ export const useCartStore = create<CartState>()(
       (set) => ({
         cart: [],
         addItem: (id) =>
-          set((state) => ({
-            cart: [
-              ...state.cart,
-              {
-                productId: id,
-                quantity: 1,
-              },
-            ],
-          })),
+          set((state) => {
+            if (state.cart.find((product) => product.productId === id)) {
+              return {
+                cart: state.cart.map((item) => {
+                  if (item.productId === id) {
+                    return {
+                      ...item,
+                      quantity: item.quantity + 1,
+                    };
+                  } else {
+                    return item;
+                  }
+                }),
+              };
+            } else {
+              return {
+                cart: [
+                  ...state.cart,
+                  {
+                    productId: id,
+                    quantity: 1,
+                  },
+                ],
+              };
+            }
+          }),
       }),
       {
         name: "cart-storage",

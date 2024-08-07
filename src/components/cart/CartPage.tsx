@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../../api/fakestoreApi";
+import { priceInRands } from "../../utils";
 import { useCartStore } from "../stores/useCartStore";
+import CartItem from "./CartItem";
 
 const CartPage = () => {
   const query = useQuery({
@@ -11,18 +13,28 @@ const CartPage = () => {
 
   return (
     <>
-      <div>
-        <h2>My Cart</h2>
-
+      <div className="flex flex-col flex-grow-0 flex-shrink-0 p-4">
         {cart.map((item) => (
-          <div>
-            {
-              query.data?.find((product) => product.id === item.productId)
-                ?.title
-            }
-          </div>
+          <>
+            <CartItem
+              key={item.productId}
+              image={
+                query.data?.find((product) => product.id == item.productId)
+                  ?.image ?? ""
+              }
+              title={
+                query.data?.find((product) => product.id == item.productId)
+                  ?.title ?? ""
+              }
+              price={priceInRands(
+                query.data?.find((product) => product.id == item.productId)
+                  ?.price ?? 0
+              )}
+              quantity={item.quantity}
+            />
+            <div className="divider"></div>
+          </>
         ))}
-
         <button className="btn btn-primary text-primary-content">
           Make Payment
         </button>
