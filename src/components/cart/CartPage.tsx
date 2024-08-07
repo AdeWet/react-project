@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../../api/fakestoreApi";
+import { priceInRands } from "../../utils";
 import { useCartStore } from "../stores/useCartStore";
 import CartItem from "./CartItem";
 
@@ -9,6 +10,21 @@ const CartPage = () => {
     queryFn: getProducts,
   });
   const { cart, addItem } = useCartStore();
+
+  function cartTotal(): string {
+    let total = 0;
+    for (const item of cart) {
+      const productPrice = query.data?.find(
+        (product) => item.productId === product.id
+      )?.price;
+      if (productPrice) {
+        total += item.quantity * productPrice;
+      } else {
+        return "Error getting Price";
+      }
+    }
+    return priceInRands(total);
+  }
 
   return (
     <>
@@ -36,6 +52,11 @@ const CartPage = () => {
             <div className="divider"></div>
           </>
         ))}
+        <div className="flex items-end justify-between">
+          <div className="font-semibold text-xl">Total:</div>
+          <div className="font-bold text-3xl">{cartTotal()}</div>
+        </div>
+
         <button className="btn btn-primary text-primary-content">
           Make Payment
         </button>
