@@ -29,8 +29,15 @@ const CartPage = () => {
   return (
     <>
       <div className="flex flex-col flex-grow-0 flex-shrink-0 p-4">
-        {cart.map((item) => (
+        {!cart.length ? (
           <>
+            <div className="text-xl font-light">
+              No items in your cart - get shopping!
+            </div>
+            <div className="divider"></div>
+          </>
+        ) : (
+          cart.map((item) => (
             <CartItem
               key={item.productId}
               image={
@@ -52,18 +59,22 @@ const CartPage = () => {
               decreaseItemQuantity={() =>
                 adjustItemQuantity(item.productId, false)
               }
-              removeCartItem={() => removeCartItem}
+              removeCartItem={() => removeCartItem(item.productId)}
             />
-            <div className="divider"></div>
-          </>
-        ))}
+          ))
+        )}
+
         <div className="flex items-end justify-between">
           <div className="font-semibold text-xl">Total:</div>
           <div className="font-bold text-3xl">{cartTotal()}</div>
         </div>
 
-        <button className="btn btn-primary text-primary-content">
-          Make Payment
+        <button
+          className={`btn btn-primary text-primary-content ${
+            cart.length ? "" : "btn-disabled"
+          }`}
+        >
+          Checkout
         </button>
       </div>
     </>
