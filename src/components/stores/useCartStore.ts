@@ -8,7 +8,7 @@ interface CartItem {
 
 interface CartState {
   cart: CartItem[];
-  addItem: (id: number) => void;
+  addItem: (id: number, isIncrease: boolean) => void;
 }
 
 export const useCartStore = create<CartState>()(
@@ -16,15 +16,27 @@ export const useCartStore = create<CartState>()(
     persist(
       (set) => ({
         cart: [],
-        addItem: (id) =>
+        addItem: (id, isIncrease) =>
           set((state) => {
             if (state.cart.find((product) => product.productId === id)) {
+              if (
+                state.cart.find((product) => product.productId === id)
+                  ?.quantity === 1 &&
+                !isIncrease
+              ) {
+                return {
+                  ...state,
+                  cart: state.cart.filter((item) => item.productId != id),
+                };
+              }
               return {
                 cart: state.cart.map((item) => {
                   if (item.productId === id) {
                     return {
                       ...item,
-                      quantity: item.quantity + 1,
+                      quantity: isIncrease
+                        ? item.quantity + 1
+                        : item.quantity - 1,
                     };
                   } else {
                     return item;

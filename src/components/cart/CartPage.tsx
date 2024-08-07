@@ -31,7 +31,8 @@ const CartPage = () => {
                   ?.price ?? 0
               )}
               quantity={item.quantity}
-              addItem={() => addItem(item.productId)}
+              addItem={() => addItem(item.productId, true)}
+              removeItem={() => addItem(item.productId, false)}
             />
             <div className="divider"></div>
           </>
