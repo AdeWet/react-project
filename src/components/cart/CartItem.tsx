@@ -5,15 +5,17 @@ const CartItem = ({
   title,
   price,
   quantity,
-  addItem,
-  removeItem,
+  increaseItemQuantity,
+  decreaseItemQuantity,
+  removeCartItem,
 }: {
   image: string;
   title: string;
   price: number;
   quantity: number;
-  addItem: () => void;
-  removeItem: () => void;
+  increaseItemQuantity: () => void;
+  decreaseItemQuantity: () => void;
+  removeCartItem: () => void;
 }) => {
   function totalPrice(): string {
     return priceInRands(quantity * price);
@@ -26,11 +28,11 @@ const CartItem = ({
       </figure>
       <div className="col-span-2">{title}</div>
       <div className="flex flex-row font-medium text-xl items-center py-3">
-        <button className="btn btn-sm" onClick={removeItem}>
+        <button className="btn btn-sm" onClick={decreaseItemQuantity}>
           -
         </button>
         <div className="px-2">{quantity}</div>
-        <button className="btn btn-sm" onClick={addItem}>
+        <button className="btn btn-sm" onClick={increaseItemQuantity}>
           +
         </button>
       </div>
@@ -38,7 +40,10 @@ const CartItem = ({
         {totalPrice()}
       </div>
       <div></div>
-      <button className="btn btn-sm btn-warning self-center justify-self-end">
+      <button
+        className="btn btn-sm btn-warning self-center justify-self-end"
+        onClick={removeCartItem}
+      >
         Remove
       </button>
     </div>

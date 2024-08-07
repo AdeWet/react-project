@@ -9,7 +9,7 @@ const BrowsePage = () => {
     queryFn: getProducts,
   });
 
-  const { addItem } = useCartStore();
+  const { adjustItemQuantity } = useCartStore();
 
   return (
     <>
@@ -20,7 +20,7 @@ const BrowsePage = () => {
             image={product.image}
             title={product.title}
             price={product.price}
-            handleAddToCart={() => addItem(product.id, true)}
+            handleAddToCart={() => adjustItemQuantity(product.id, true)}
           />
         ))}
       </div>

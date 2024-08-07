@@ -9,7 +9,7 @@ const CartPage = () => {
     queryKey: ["products"],
     queryFn: getProducts,
   });
-  const { cart, addItem } = useCartStore();
+  const { cart, adjustItemQuantity, removeCartItem } = useCartStore();
 
   function cartTotal(): string {
     let total = 0;
@@ -46,8 +46,13 @@ const CartPage = () => {
                   ?.price ?? 0
               }
               quantity={item.quantity}
-              addItem={() => addItem(item.productId, true)}
-              removeItem={() => addItem(item.productId, false)}
+              increaseItemQuantity={() =>
+                adjustItemQuantity(item.productId, true)
+              }
+              decreaseItemQuantity={() =>
+                adjustItemQuantity(item.productId, false)
+              }
+              removeCartItem={() => removeCartItem}
             />
             <div className="divider"></div>
           </>

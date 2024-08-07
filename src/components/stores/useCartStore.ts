@@ -8,7 +8,8 @@ interface CartItem {
 
 interface CartState {
   cart: CartItem[];
-  addItem: (id: number, isIncrease: boolean) => void;
+  adjustItemQuantity: (id: number, isIncrease: boolean) => void;
+  removeCartItem: (id: number) => void;
 }
 
 export const useCartStore = create<CartState>()(
@@ -16,7 +17,7 @@ export const useCartStore = create<CartState>()(
     persist(
       (set) => ({
         cart: [],
-        addItem: (id, isIncrease) =>
+        adjustItemQuantity: (id, isIncrease) =>
           set((state) => {
             if (state.cart.find((product) => product.productId === id)) {
               if (
@@ -54,6 +55,13 @@ export const useCartStore = create<CartState>()(
                 ],
               };
             }
+          }),
+        removeCartItem: (id) =>
+          set((state) => {
+            return {
+              ...state,
+              cart: state.cart.filter((item) => item.productId != id),
+            };
           }),
       }),
       {
