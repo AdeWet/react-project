@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 import { getProducts } from "../../api/fakestoreApi";
 import { useCartStore } from "../stores/useCartStore";
 import ProductCard from "./ProductCard";
@@ -15,13 +16,14 @@ const BrowsePage = () => {
     <>
       <div>
         {query.data?.map((product) => (
-          <ProductCard
-            key={product.id}
-            image={product.image}
-            title={product.title}
-            price={product.price}
-            handleAddToCart={() => adjustItemQuantity(product.id, true)}
-          />
+          <Link key={product.id} to={`${product.id}`}>
+            <ProductCard
+              image={product.image}
+              title={product.title}
+              price={product.price}
+              handleAddToCart={() => adjustItemQuantity(product.id, true)}
+            />
+          </Link>
         ))}
       </div>
     </>
