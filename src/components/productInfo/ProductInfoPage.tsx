@@ -32,12 +32,12 @@ const ProductInfoPage = () => {
       </div>
       <div>
         <div className="text-lg font-semi-bold">Description</div>
-        <div className="font-extralight">{query.data?.description}</div>
+        <div className="font-extralight">{query.data.description}</div>
         <div className="divider"></div>
       </div>
       <div className="flex flex-wrap justify-between">
         <div className="font-bold text-2xl self-center">
-          {priceInRands(query.data?.price ?? 0)}
+          {priceInRands(query.data.price ?? 0)}
         </div>
         <button
           className="btn btn-primary"
