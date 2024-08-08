@@ -5,3 +5,9 @@ export async function getProducts(): Promise<Product[]> {
   const response = await fetch(api);
   return await response.json();
 }
+
+export async function getProductInformation(id?: string): Promise<Product> {
+  const api = `https://fakestoreapi.com/products/${id}`;
+  const response = await fetch(api);
+  return await response.json();
+}
