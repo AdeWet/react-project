@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
-interface Review {
+export interface Review {
   productId: number;
   customerName: string;
   review: string;

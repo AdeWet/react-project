@@ -1,14 +1,23 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useReviewStore } from "../stores/useReviewStore";
 
-const AddProductReview = () => {
+const AddProductReview = ({
+  productId,
+  handleSubmitButton,
+}: {
+  productId: number;
+  handleSubmitButton: () => void;
+}) => {
+  const { addReview } = useReviewStore();
+
   const formik = useFormik({
     initialValues: {
-      name: "",
+      customerName: "",
       review: "",
     },
     validationSchema: Yup.object({
-      name: Yup.string()
+      customerName: Yup.string()
         .max(30, "Cannot exceed 30 characters.")
         .required("Required"),
       review: Yup.string()
@@ -16,7 +25,8 @@ const AddProductReview = () => {
         .required("Required"),
     }),
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      addReview(productId, values.customerName, values.review);
+      handleSubmitButton();
     },
   });
 
@@ -25,19 +35,19 @@ const AddProductReview = () => {
       <label className="form-control">
         <div className="label label-text-alt">
           <span className="label-text-alt">Your name.</span>
-          {formik.touched.name && formik.errors.name ? (
+          {formik.touched.customerName && formik.errors.customerName ? (
             <span className="label-text-alt text-error">
-              *{formik.errors.name}
+              *{formik.errors.customerName}
             </span>
           ) : null}
         </div>
         <input
-          id="name"
-          name="name"
+          id="customerName"
+          name="customerName"
           type="text"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.name}
+          value={formik.values.customerName}
           placeholder="Enter your name here."
           className="input input-bordered"
         />

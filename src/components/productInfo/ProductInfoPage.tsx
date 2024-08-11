@@ -1,21 +1,30 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductInformation } from "../../api/fakestoreApi";
 import { priceInRands } from "../../utils";
 import { useCartStore } from "../stores/useCartStore";
+import { useReviewStore } from "../stores/useReviewStore";
 import AddProductReview from "./AddProductReview";
+import ReviewContainer from "./ReviewContainer";
 
 const ProductInfoPage = () => {
   const { productId } = useParams();
+  const [isReviewing, changeReviewingState] = useState(false);
 
   const query = useQuery({
     queryKey: [productId],
     queryFn: () => getProductInformation(productId),
   });
   const { adjustItemQuantity } = useCartStore();
+  const { reviews } = useReviewStore();
 
   if (!query.data) {
     return;
+  }
+
+  function handleSubmitButton() {
+    changeReviewingState(false);
   }
 
   return (
@@ -47,7 +56,21 @@ const ProductInfoPage = () => {
           Add to Cart
         </button>
       </div>
-      <AddProductReview></AddProductReview>
+      <ReviewContainer
+        reviews={reviews.filter((review) => review.productId === query.data.id)}
+      ></ReviewContainer>
+      <button
+        className="btn btn-secondary text-secondary-content"
+        onClick={() => changeReviewingState(!isReviewing)}
+      >
+        Write a Review
+      </button>
+      {isReviewing && (
+        <AddProductReview
+          productId={query.data.id}
+          handleSubmitButton={handleSubmitButton}
+        ></AddProductReview>
+      )}
     </div>
   );
 };
