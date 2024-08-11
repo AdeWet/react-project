@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getProductInformation } from "../../api/fakestoreApi";
 import { priceInRands } from "../../utils";
 import { useCartStore } from "../stores/useCartStore";
+import AddProductReview from "./AddProductReview";
 
 const ProductInfoPage = () => {
   const { productId } = useParams();
@@ -46,6 +47,7 @@ const ProductInfoPage = () => {
           Add to Cart
         </button>
       </div>
+      <AddProductReview></AddProductReview>
     </div>
   );
 };
