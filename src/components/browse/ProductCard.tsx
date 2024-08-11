@@ -22,14 +22,20 @@ const ProductCard = ({
 
   return (
     <Link key={id} to={`${id}`}>
-      <div className="card card-compact bg-base-100 w-96 h-96 shadow-xl">
-        <figure>
-          <img src={image} alt="Product" />
+      <div className="card card-compact bg-base-100 shadow-xl">
+        <figure className="bg-white">
+          <img
+            className="h-52 p-4 self-end object-scale-down"
+            src={image}
+            alt="Product"
+          />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{title}</h2>
+          <p className="text-base font-medium truncate">{title}</p>
           <div className="card-actions justify-end">
-            <p>{priceInRands(price)}</p>
+            <p className="text-2xl font-bold self-center">
+              {priceInRands(price)}
+            </p>
             <button className="btn btn-primary" onClick={handleAddtoCartHere}>
               Add to cart
             </button>
