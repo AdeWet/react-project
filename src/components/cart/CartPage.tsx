@@ -60,7 +60,7 @@ const CartPage = () => {
               Continue Browsing
             </button>
           </Link>
-          <div className="flex flex-col lg:flex-row md:flex-row lg:justify-between md:justify-between flex-grow-0 flex-shrink-0 gap-8">
+          <div className="flex flex-col md:flex-row md:justify-between flex-grow-0 flex-shrink-0 gap-8">
             <div className="pt-2 w-full">
               {cart.map((item) => (
                 <CartItem
@@ -89,8 +89,8 @@ const CartPage = () => {
                 />
               ))}
             </div>
-            <div className="self-end w-full lg:w-3/5 md:w-4/5 lg:sticky lg:bottom-0 md:sticky md:bottom-0">
-              <div className="px-4 py-4">
+            <div className="md:self-end w-full lg:w-3/5 md:w-4/5 md:sticky md:bottom-0">
+              <div className="md:px-4 md:pb-4">
                 <div className="flex items-end justify-between">
                   <div className="font-light text-xl">Total:</div>
                   <div className="font-bold text-3xl">{cartTotal()}</div>
