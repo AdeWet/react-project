@@ -28,7 +28,11 @@ const CartItem = ({
   return (
     <>
       <div className="grid grid-cols-3 grid-rows-2 gap-x-6">
-        <Link className="row-span-2" to={`../browse/${id}`}>
+        <Link
+          className="row-span-2"
+          to={`../browse/${id}`}
+          aria-label="Product information"
+        >
           <figure className=" lg:w-1/2 md:w-1/2 bg-white p-4 flex justify-center items-center">
             <img className="h-16 object-scale-down" src={image} alt="Product" />
           </figure>
@@ -38,18 +42,20 @@ const CartItem = ({
           <button
             className="btn btn-sm btn-square btn-outline"
             onClick={decreaseItemQuantity}
+            aria-label="decrease quantity of this item by 1"
           >
             <FaMinus />
           </button>
-          <div>{quantity}</div>
+          <div className="text-lg md:text-xl lg:text-xl">{quantity}</div>
           <button
             className="btn btn-sm btn-square btn-outline"
             onClick={increaseItemQuantity}
+            aria-label="increase quantity of this item by 1"
           >
             <FaPlus />
           </button>
         </div>
-        <div className="font-semibold text-xl self-center justify-self-end">
+        <div className="font-semibold text-lg md:text-xl lg:text-xl self-center justify-self-end">
           {totalPrice()}
         </div>
       </div>
@@ -57,6 +63,7 @@ const CartItem = ({
         <button
           className="btn btn-sm btn-warning btn-square btn-outline self-end"
           onClick={removeCartItem}
+          aria-label="remove all of this item from cart"
         >
           <FaTrash />
         </button>

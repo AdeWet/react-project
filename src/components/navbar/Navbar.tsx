@@ -8,7 +8,7 @@ const Navbar = () => {
       <div className="navbar-center">
         <Link
           aria-label="Go to home page"
-          className="text-secondary-content text-xl"
+          className="text-secondary-content text-xl font-medium"
           to={""}
         >
           spendalot
@@ -16,7 +16,12 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <Link aria-label="Go to cart" to={"cart"}>
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle"
+            aria-label="Go to cart"
+          >
             <div className="indicator">
               <FaShoppingCart className="size-6" />
             </div>

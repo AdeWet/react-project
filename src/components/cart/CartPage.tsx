@@ -33,7 +33,7 @@ const CartPage = () => {
         <NoItemsCard />
       ) : (
         <div className="p-4">
-          <Link to={"/"}>
+          <Link to={"/"} aria-label="Browse more products">
             <button className="btn btn-primary btn-outline">
               Continue Browsing
             </button>
@@ -68,7 +68,7 @@ const CartPage = () => {
               ))}
             </div>
             <div className="self-end w-full lg:w-3/5 md:w-4/5 lg:sticky lg:bottom-0 md:sticky md:bottom-0">
-              <div className="px-4 py-2">
+              <div className="px-4 py-4">
                 <div className="flex items-end justify-between">
                   <div className="font-light text-xl">Total:</div>
                   <div className="font-bold text-3xl">{cartTotal()}</div>
@@ -78,6 +78,7 @@ const CartPage = () => {
                   className={`btn btn-primary text-primary-content w-full ${
                     cart.length ? "" : "btn-disabled"
                   }`}
+                  aria-label="Go to checkout page"
                 >
                   Checkout (Coming Soon)
                 </button>

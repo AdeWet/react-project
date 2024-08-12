@@ -77,7 +77,7 @@ const ProductInfoPage = () => {
         <div className="divider -m-0 lg:col-span-2 md:col-span-2"></div>
         <div>
           <button
-            className="btn btn-secondary btn-outline text-secondary-content"
+            className="btn btn-secondary text-secondary-content"
             onClick={() => changeReviewingState(!isReviewing)}
           >
             {!isReviewing ? "Write a Review" : "Cancel"}
