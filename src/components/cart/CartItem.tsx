@@ -61,7 +61,7 @@ const CartItem = ({
       </div>
       <div className="flex justify-end pr-6 md:pr-1">
         <button
-          className="btn btn-sm btn-warning btn-square btn-outline self-end"
+          className="btn btn-sm btn-secondary btn-square btn-outline self-end"
           onClick={removeCartItem}
           aria-label="remove all of this item from cart"
         >
