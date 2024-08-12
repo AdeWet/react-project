@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import BrowsePage from "../components/browse/BrowsePage";
 import CartPage from "../components/cart/CartPage";
-import GenericErrorPage from "../components/error/GenericErrorPage";
+import GenericErrorPage from "../components/generic/GenericErrorPage";
 import ProductInfoPage from "../components/productInfo/ProductInfoPage";
 
 const router = createBrowserRouter([
