@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { getProducts } from "../../api/fakestoreApi";
 import { useCartStore } from "../stores/useCartStore";
+import CartItemAddedToast from "./CartItemAddedToast";
 import ProductCard from "./ProductCard";
 
 const BrowsePage = () => {
@@ -30,8 +31,7 @@ const BrowsePage = () => {
 
   return (
     <div>
-      {isShowingToast && <ItemAddedToast />}
-
+      {isShowingToast && <CartItemAddedToast />}
       <div className="w-svw p-2 xl:p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-4 gap-2 justify-center">
         {query.data?.map((product) => (
           <ProductCard
@@ -43,16 +43,6 @@ const BrowsePage = () => {
             handleAddToCart={() => handleAddToCart(product.id)}
           />
         ))}
-      </div>
-    </div>
-  );
-};
-
-const ItemAddedToast = () => {
-  return (
-    <div className="toast z-50 top-16 transition-opacity ease-in-out duration-500 opacity-100">
-      <div className="alert alert-info font-light">
-        <span>Item added to your cart</span>
       </div>
     </div>
   );
