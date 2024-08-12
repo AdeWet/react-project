@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getProductInformation } from "../../api/fakestoreApi";
 import { priceInRands } from "../../utils";
 import CartItemAddedToast from "../browse/CartItemAddedToast";
+import GenericErrorPage from "../error/GenericErrorPage";
 import { useCartStore } from "../stores/useCartStore";
 import { useReviewStore } from "../stores/useReviewStore";
 import AddProductReview from "./AddProductReview";
@@ -21,6 +22,26 @@ const ProductInfoPage = () => {
   const { adjustItemQuantity } = useCartStore();
   const { reviews } = useReviewStore();
   const navigate = useNavigate();
+
+  if (query.isLoading) {
+    return (
+      <div className="h-svh -my-16 flex justify-center items-center">
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
+  }
+
+  if (query.error) {
+    return (
+      <GenericErrorPage
+        error={{
+          title: "Oopsie Daisy",
+          message: "Failed to get this product's information, try again later",
+          buttonText: "",
+        }}
+      />
+    );
+  }
 
   if (!query.data) {
     return;

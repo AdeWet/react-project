@@ -13,9 +13,11 @@ const GenericErrorPage = ({ error }: { error: GenericError }) => {
         <div className="max-w-md">
           <h1 className="text-5xl font-bold">{error.title}</h1>
           <p className="py-6">{error.message}</p>
-          <Link className="btn btn-primary" to="/">
-            {error.buttonText}
-          </Link>
+          {error.buttonText && (
+            <Link className="btn btn-primary" to="/">
+              {error.buttonText}
+            </Link>
+          )}
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { getProducts } from "../../api/fakestoreApi";
+import GenericErrorPage from "../error/GenericErrorPage";
 import { useCartStore } from "../stores/useCartStore";
 import CartItemAddedToast from "./CartItemAddedToast";
 import ProductCard from "./ProductCard";
@@ -20,6 +21,18 @@ const BrowsePage = () => {
       <div className="h-svh -my-16 flex justify-center items-center">
         <span className="loading loading-dots loading-lg"></span>
       </div>
+    );
+  }
+
+  if (query.error) {
+    return (
+      <GenericErrorPage
+        error={{
+          title: "Oopsie Daisy",
+          message: "Failed to get products, try again later",
+          buttonText: "",
+        }}
+      />
     );
   }
 
