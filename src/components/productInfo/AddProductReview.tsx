@@ -51,6 +51,7 @@ const AddProductReview = ({
             value={formik.values.customerName}
             placeholder="Enter your name here."
             className="input input-bordered text-sm"
+            autoComplete="off"
           />
         </label>
         <label className="form-control">
@@ -68,8 +69,9 @@ const AddProductReview = ({
             typeof="text"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="textarea textarea-bordered h-24 text-sm"
+            className="textarea textarea-bordered h-24 text-sm resize-none"
             placeholder="Enter your review here."
+            autoComplete="off"
           ></textarea>
         </label>
         <button type="submit" className="btn btn-primary">

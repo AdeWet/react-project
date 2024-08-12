@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import BrowsePage from "../components/browse/BrowsePage";
 import CartPage from "../components/cart/CartPage";
-import ErrorPage from "../components/error/ErrorPage";
+import GenericErrorPage from "../components/error/GenericErrorPage";
 import ProductInfoPage from "../components/productInfo/ProductInfoPage";
 
 const router = createBrowserRouter([
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
         element: <ProductInfoPage />,
       },
       {
-        path: "browse",
+        path: "/",
         element: <BrowsePage />,
       },
       {
@@ -24,7 +24,16 @@ const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <ErrorPage />,
+        element: (
+          <GenericErrorPage
+            error={{
+              title: "Whoopsie Daisy",
+              message:
+                "Sorry! The page you were looking for could not be found.",
+              buttonText: "Go back to home page",
+            }}
+          />
+        ),
       },
     ],
   },

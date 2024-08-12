@@ -1,16 +1,6 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-
-interface CartItem {
-  productId: number;
-  quantity: number;
-}
-
-interface CartState {
-  cart: CartItem[];
-  adjustItemQuantity: (id: number, isIncrease: boolean) => void;
-  removeCartItem: (id: number) => void;
-}
+import { CartState } from "../../interfaces/interfaces";
 
 export const useCartStore = create<CartState>()(
   devtools(
