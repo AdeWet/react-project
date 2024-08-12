@@ -2,15 +2,19 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="sticky top-0 z-50 navbar bg-primary text-primary-content">
+    <div className="sticky top-0 z-50 navbar bg-secondary text-secondary-content">
       <div className="navbar-start"></div>
       <div className="navbar-center">
-        <Link className="btn btn-ghost text-xl" to={"browse"}>
+        <Link
+          aria-label="Go to home page"
+          className="text-secondary-content text-xl"
+          to={"browse"}
+        >
           spendalot
         </Link>
       </div>
       <div className="navbar-end">
-        <Link to={"cart"}>
+        <Link aria-label="Go to cart" to={"cart"}>
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
             <div className="indicator">
               <svg
