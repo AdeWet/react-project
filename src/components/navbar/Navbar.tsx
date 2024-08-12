@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="sticky top-0 z-50 navbar bg-secondary text-secondary-content">
+    <div className="sticky top-0 z-50 navbar bg-secondary text-secondary-content h-16">
       <div className="navbar-start"></div>
       <div className="navbar-center">
         <Link

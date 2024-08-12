@@ -21,7 +21,7 @@ const ProductCard = ({
   };
 
   return (
-    <Link key={id} to={`${id}`}>
+    <Link key={id} to={`browse/${id}`}>
       <div className="card card-compact bg-base-100 shadow-xl">
         <figure className="bg-white">
           <img
