@@ -22,7 +22,7 @@ const ProductCard = ({
 
   return (
     <Link key={id} to={`browse/${id}`}>
-      <div className="card card-compact bg-base-100 shadow-xl">
+      <div className="card card-compact bg-base-100 shadow-xl border hover:border-primary">
         <figure className="bg-white">
           <img
             className="h-52 p-4 self-end object-scale-down"
