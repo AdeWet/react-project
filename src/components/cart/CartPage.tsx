@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 import { getProducts } from "../../api/fakestoreApi";
 import { priceInRands } from "../../utils";
 import { useCartStore } from "../stores/useCartStore";
@@ -28,63 +29,81 @@ const CartPage = () => {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row md:flex-row lg:justify-between md:justify-between flex-grow-0 flex-shrink-0">
-        {!cart.length ? (
-          <>
-            <div className="text-xl font-light">
-              No items in your cart - get shopping!
-            </div>
-            <div className="divider"></div>
-          </>
-        ) : (
-          <div className="p-4 w-full">
-            {cart.map((item) => (
-              <CartItem
-                key={item.productId}
-                image={
-                  query.data?.find((product) => product.id == item.productId)
-                    ?.image ?? ""
-                }
-                title={
-                  query.data?.find((product) => product.id == item.productId)
-                    ?.title ?? ""
-                }
-                price={
-                  query.data?.find((product) => product.id == item.productId)
-                    ?.price ?? 0
-                }
-                quantity={item.quantity}
-                increaseItemQuantity={() =>
-                  adjustItemQuantity(item.productId, true)
-                }
-                decreaseItemQuantity={() =>
-                  adjustItemQuantity(item.productId, false)
-                }
-                removeCartItem={() => removeCartItem(item.productId)}
-              />
-            ))}
-          </div>
-        )}
-
-        <div className="self-end w-full lg:w-2/5 md:w-4/5 lg:sticky lg:bottom-0 md:sticky md:bottom-0">
-          <div className="px-4 py-2">
-            <div className="flex items-end justify-between">
-              <div className="font-semibold text-xl">Total:</div>
-              <div className="font-bold text-3xl">{cartTotal()}</div>
-            </div>
-
-            <button
-              className={`btn btn-primary text-primary-content w-full ${
-                cart.length ? "" : "btn-disabled"
-              }`}
-            >
-              Checkout
+      {!cart.length ? (
+        <NoItemsCard />
+      ) : (
+        <div className="p-4">
+          <Link to={"/"}>
+            <button className="btn btn-primary btn-outline">
+              Continue Browsing
             </button>
+          </Link>
+          <div className="flex flex-col lg:flex-row md:flex-row lg:justify-between md:justify-between flex-grow-0 flex-shrink-0 gap-8">
+            <div className="pt-2 w-full">
+              {cart.map((item) => (
+                <CartItem
+                  key={item.productId}
+                  id={item.productId}
+                  image={
+                    query.data?.find((product) => product.id == item.productId)
+                      ?.image ?? ""
+                  }
+                  title={
+                    query.data?.find((product) => product.id == item.productId)
+                      ?.title ?? ""
+                  }
+                  price={
+                    query.data?.find((product) => product.id == item.productId)
+                      ?.price ?? 0
+                  }
+                  quantity={item.quantity}
+                  increaseItemQuantity={() =>
+                    adjustItemQuantity(item.productId, true)
+                  }
+                  decreaseItemQuantity={() =>
+                    adjustItemQuantity(item.productId, false)
+                  }
+                  removeCartItem={() => removeCartItem(item.productId)}
+                />
+              ))}
+            </div>
+            <div className="self-end w-full lg:w-3/5 md:w-4/5 lg:sticky lg:bottom-0 md:sticky md:bottom-0">
+              <div className="px-4 py-2">
+                <div className="flex items-end justify-between">
+                  <div className="font-light text-xl">Total:</div>
+                  <div className="font-bold text-3xl">{cartTotal()}</div>
+                </div>
+
+                <button
+                  className={`btn btn-primary text-primary-content w-full ${
+                    cart.length ? "" : "btn-disabled"
+                  }`}
+                >
+                  Checkout (Coming Soon)
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
 
 export default CartPage;
+
+const NoItemsCard = () => {
+  return (
+    <div className="hero bg-base-200 h-svh -mt-16">
+      <div className="hero-content text-center">
+        <div className="max-w-md">
+          <h1 className="text-5xl font-bold">No items in your cart!</h1>
+          <p className="py-6">Get shopping!</p>
+          <Link className="btn btn-primary" to="/">
+            Browse Products
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
