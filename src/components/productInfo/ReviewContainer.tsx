@@ -1,4 +1,4 @@
-import { Review } from "../stores/useReviewStore";
+import { Review } from "../../interfaces/interfaces";
 import ReviewCard from "./ReviewCard";
 
 const ReviewContainer = ({ reviews }: { reviews: Review[] }) => {

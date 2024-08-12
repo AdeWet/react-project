@@ -9,7 +9,7 @@ const Navbar = () => {
         <Link
           aria-label="Go to home page"
           className="text-secondary-content text-xl font-medium"
-          to={""}
+          to={"/"}
         >
           spendalot
         </Link>

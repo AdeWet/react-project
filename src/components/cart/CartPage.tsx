@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getProducts } from "../../api/fakestoreApi";
 import { priceInRands } from "../../utils";
 import GenericErrorPage from "../error/GenericErrorPage";
+import GenericLoader from "../loader/GenericLoader";
 import { useCartStore } from "../stores/useCartStore";
 import CartItem from "./CartItem";
 
@@ -26,6 +27,20 @@ const CartPage = () => {
       }
     }
     return priceInRands(total);
+  }
+
+  if (query.isLoading) {
+    return <GenericLoader />;
+  }
+
+  if (query.error) {
+    <GenericErrorPage
+      error={{
+        title: "Oopsie Daisy",
+        message: "Failed to get your cart, please try again later",
+        buttonText: "",
+      }}
+    />;
   }
 
   return (

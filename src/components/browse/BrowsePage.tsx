@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { getProducts } from "../../api/fakestoreApi";
 import GenericErrorPage from "../error/GenericErrorPage";
+import GenericLoader from "../loader/GenericLoader";
 import { useCartStore } from "../stores/useCartStore";
 import CartItemAddedToast from "./CartItemAddedToast";
 import ProductCard from "./ProductCard";
@@ -17,11 +18,7 @@ const BrowsePage = () => {
   const { adjustItemQuantity } = useCartStore();
 
   if (query.isLoading) {
-    return (
-      <div className="h-svh -my-16 flex justify-center items-center">
-        <span className="loading loading-dots loading-lg"></span>
-      </div>
-    );
+    return <GenericLoader />;
   }
 
   if (query.error) {

@@ -5,6 +5,7 @@ import { getProductInformation } from "../../api/fakestoreApi";
 import { priceInRands } from "../../utils";
 import CartItemAddedToast from "../browse/CartItemAddedToast";
 import GenericErrorPage from "../error/GenericErrorPage";
+import GenericLoader from "../loader/GenericLoader";
 import { useCartStore } from "../stores/useCartStore";
 import { useReviewStore } from "../stores/useReviewStore";
 import AddProductReview from "./AddProductReview";
@@ -24,27 +25,20 @@ const ProductInfoPage = () => {
   const navigate = useNavigate();
 
   if (query.isLoading) {
-    return (
-      <div className="h-svh -my-16 flex justify-center items-center">
-        <span className="loading loading-dots loading-lg"></span>
-      </div>
-    );
+    return <GenericLoader />;
   }
 
-  if (query.error) {
+  if (query.error || !query.data) {
     return (
       <GenericErrorPage
         error={{
           title: "Oopsie Daisy",
-          message: "Failed to get this product's information, try again later",
+          message:
+            "Failed to get this product's information, please try again later",
           buttonText: "",
         }}
       />
     );
-  }
-
-  if (!query.data) {
-    return;
   }
 
   function handleSubmitButton() {

@@ -1,10 +1,5 @@
 import { Link } from "react-router-dom";
-
-export interface GenericError {
-  title: string;
-  message: string;
-  buttonText: string;
-}
+import { GenericError } from "../../interfaces/interfaces";
 
 const GenericErrorPage = ({ error }: { error: GenericError }) => {
   return (
