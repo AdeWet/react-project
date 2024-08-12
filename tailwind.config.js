@@ -7,6 +7,16 @@ export default {
   },
   plugins: [daisyui],
   daisyui: {
-    themes: ["autumn"],
+    themes: [
+      {
+        mytheme: {
+          primary: "#3C3C3C",
+          "primary-content": "#F5F5F5",
+          secondary: "#FF5A5F",
+          "secondary-content": "#1F1F1F",
+          "base-100": "#F5F5F5",
+        },
+      },
+    ],
   },
 };
