@@ -1,3 +1,4 @@
+import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import { priceInRands } from "../../utils";
 
 const CartItem = ({
@@ -29,12 +30,18 @@ const CartItem = ({
         </figure>
         <div className="col-span-2 truncate">{title}</div>
         <div className="grid grid-flow-col font-medium text-xl items-center justify-between">
-          <button className="btn btn-sm" onClick={decreaseItemQuantity}>
-            -
+          <button
+            className="btn btn-sm btn-square btn-outline"
+            onClick={decreaseItemQuantity}
+          >
+            <FaMinus />
           </button>
           <div>{quantity}</div>
-          <button className="btn btn-sm" onClick={increaseItemQuantity}>
-            +
+          <button
+            className="btn btn-sm btn-square btn-outline"
+            onClick={increaseItemQuantity}
+          >
+            <FaPlus />
           </button>
         </div>
         <div className="font-semibold text-xl self-center justify-self-end">
@@ -43,10 +50,10 @@ const CartItem = ({
       </div>
       <div className="flex justify-end">
         <button
-          className="btn btn-sm btn-warning self-end"
+          className="btn btn-sm btn-warning btn-square btn-outline self-end"
           onClick={removeCartItem}
         >
-          Remove
+          <FaTrash />
         </button>
       </div>
 
