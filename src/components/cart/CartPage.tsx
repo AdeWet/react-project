@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../api/fakestoreApi";
 import { priceInRands } from "../../utils";
+import GenericErrorPage from "../error/GenericErrorPage";
 import { useCartStore } from "../stores/useCartStore";
 import CartItem from "./CartItem";
 
@@ -30,7 +31,13 @@ const CartPage = () => {
   return (
     <>
       {!cart.length ? (
-        <NoItemsCard />
+        <GenericErrorPage
+          error={{
+            title: "No items in your cart...",
+            message: "Get spending!",
+            buttonText: "Browse Producs",
+          }}
+        />
       ) : (
         <div className="p-4">
           <Link to={"/"} aria-label="Browse more products">
@@ -92,19 +99,3 @@ const CartPage = () => {
 };
 
 export default CartPage;
-
-const NoItemsCard = () => {
-  return (
-    <div className="hero bg-base-200 h-svh -mt-16">
-      <div className="hero-content text-center">
-        <div className="max-w-md">
-          <h1 className="text-5xl font-bold">No items in your cart!</h1>
-          <p className="py-6">Get shopping!</p>
-          <Link className="btn btn-primary" to="/">
-            Browse Products
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-};
