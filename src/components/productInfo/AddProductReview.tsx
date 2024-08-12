@@ -32,48 +32,50 @@ const AddProductReview = ({
 
   return (
     <form onSubmit={formik.handleSubmit} className="w-full">
-      <label className="form-control">
-        <div className="label label-text-alt">
-          <span className="label-text-alt">Your name.</span>
-          {formik.touched.customerName && formik.errors.customerName ? (
-            <span className="label-text-alt text-error">
-              *{formik.errors.customerName}
-            </span>
-          ) : null}
-        </div>
-        <input
-          id="customerName"
-          name="customerName"
-          type="text"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.customerName}
-          placeholder="Enter your name here."
-          className="input input-bordered"
-        />
-      </label>
-      <label className="form-control">
-        <div className="label">
-          <span className="label-text-alt">Your review.</span>
-          {formik.touched.review && formik.errors.review ? (
-            <span className="label-text-alt text-error">
-              *{formik.errors.review}
-            </span>
-          ) : null}
-        </div>
-        <textarea
-          id="review"
-          name="review"
-          typeof="text"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          className="textarea textarea-bordered h-24"
-          placeholder="Enter your review here."
-        ></textarea>
-      </label>
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
+      <div className="flex flex-col gap-2">
+        <label className="form-control">
+          <div className="label label-text-alt">
+            <span className="label-text-alt">Your name.</span>
+            {formik.touched.customerName && formik.errors.customerName ? (
+              <span className="label-text-alt text-error">
+                *{formik.errors.customerName}
+              </span>
+            ) : null}
+          </div>
+          <input
+            id="customerName"
+            name="customerName"
+            type="text"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.customerName}
+            placeholder="Enter your name here."
+            className="input input-bordered text-sm"
+          />
+        </label>
+        <label className="form-control">
+          <div className="label">
+            <span className="label-text-alt">Your review.</span>
+            {formik.touched.review && formik.errors.review ? (
+              <span className="label-text-alt text-error">
+                *{formik.errors.review}
+              </span>
+            ) : null}
+          </div>
+          <textarea
+            id="review"
+            name="review"
+            typeof="text"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            className="textarea textarea-bordered h-24 text-sm"
+            placeholder="Enter your review here."
+          ></textarea>
+        </label>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </div>
     </form>
   );
 };

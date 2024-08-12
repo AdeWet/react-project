@@ -6,9 +6,9 @@ const ReviewCard = ({
   review: string;
 }) => {
   return (
-    <div className="flex flex-col">
-      <div className="text-sm font-extralight">{customerName} said:</div>
-      <div className="font-medium">"{review}"</div>
+    <div className="chat chat-start">
+      <div className="chat-header">{customerName} said:</div>
+      <div className="chat-bubble w-full">{review}</div>
     </div>
   );
 };
