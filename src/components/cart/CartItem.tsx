@@ -59,7 +59,7 @@ const CartItem = ({
           {totalPrice()}
         </div>
       </div>
-      <div className="flex justify-end pr-6 md:pr-1">
+      <div className="flex justify-end px-6">
         <button
           className="btn btn-sm btn-secondary btn-square btn-outline self-end"
           onClick={removeCartItem}

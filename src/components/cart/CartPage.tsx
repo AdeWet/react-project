@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../api/fakestoreApi";
 import { priceInRands } from "../../utils";
-import GenericErrorPage from "../error/GenericErrorPage";
-import GenericLoader from "../loader/GenericLoader";
+import GenericErrorPage from "../generic/GenericErrorPage";
+import GenericLoader from "../generic/GenericLoader";
 import { useCartStore } from "../stores/useCartStore";
 import CartItem from "./CartItem";
 

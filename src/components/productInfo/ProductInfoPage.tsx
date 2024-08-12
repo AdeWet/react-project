@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getProductInformation } from "../../api/fakestoreApi";
 import { priceInRands } from "../../utils";
-import CartItemAddedToast from "../browse/CartItemAddedToast";
-import GenericErrorPage from "../error/GenericErrorPage";
-import GenericLoader from "../loader/GenericLoader";
+import GenericErrorPage from "../generic/GenericErrorPage";
+import GenericLoader from "../generic/GenericLoader";
+import GenericToast from "../generic/GenericToast";
 import { useCartStore } from "../stores/useCartStore";
 import { useReviewStore } from "../stores/useReviewStore";
 import AddProductReview from "./AddProductReview";
@@ -53,7 +53,7 @@ const ProductInfoPage = () => {
 
   return (
     <div className="p-4 flex flex-col gap-4">
-      {isShowingToast && <CartItemAddedToast />}
+      {isShowingToast && <GenericToast message="Item added to your cart" />}
 
       <button
         className="btn btn-primary btn-outline self-start"
